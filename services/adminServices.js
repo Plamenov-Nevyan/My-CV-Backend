@@ -35,6 +35,7 @@ const addAdmin = async (data) => {
 }
 
 const createAdminSession = (adminData) => {
+  console.log(process.env.jwtSecret)
    let accessToken = jwt.sign({...adminData}, process.env.jwtSecret, {expiresIn:'1d'})
    return {
     email : adminData.email,

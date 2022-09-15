@@ -5,6 +5,7 @@ const projectSchema = new Schema({
   previewImg : {type : String},
   projectName : {type : String},
   description : {type: String, maxLength : 250},
+  deployment : {type : String},
   tags : []
 }, {timestamps : true})
 

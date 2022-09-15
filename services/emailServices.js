@@ -35,9 +35,12 @@ const sendEmail = (emailData) => {
   let resp = await fetch(`https://api.emailable.com/v1/verify?email=${email}&api_key=${process.env.EmailVerificationKey}`)
   let data = await resp.json()
   if(data.state !== 'deliverable'){
-      throw {
+      return {
           message : `Email adress doesn\'t exist or it\'s unsafe to use!`
       }
+  }
+  else {
+   return { message : 'Success' }
   }
 }
 

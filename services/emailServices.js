@@ -1,12 +1,11 @@
 const nodemailer = require('nodemailer')
-const constants = require('../config/constants')
 const transporter = nodemailer.createTransport({
     service: 'gmail', 
     port: 2525,
     secure: true,
     auth: {
-      user: constants.GMAIL_USERNAME,
-      pass: constants.GooglePass
+      user: process.env.GMAIL_USERNAME,
+      pass: process.env.GooglePass
     },
   });
 

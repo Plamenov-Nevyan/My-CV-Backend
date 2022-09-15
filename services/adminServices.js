@@ -1,7 +1,6 @@
 const jwt = require ("jsonwebtoken")
 const bcrypt = require ("bcrypt")
 const { Admin } = require ("../models/Admin")
-const constants = require('../config/constants')
 
 const authorizeAdmin = async (data) => {
   try{
@@ -28,7 +27,7 @@ const authorizeAdmin = async (data) => {
 }
 
 const addAdmin = async (data) => {
-    let hashedPass = await bcrypt.hash(data.password, constants.saltRounds)
+    let hashedPass = await bcrypt.hash(data.password, process.env.saltRounds)
     return Admin.create({
         ...data,
         password: hashedPass
@@ -36,7 +35,7 @@ const addAdmin = async (data) => {
 }
 
 const createAdminSession = (adminData) => {
-   let accessToken = jwt.sign({...adminData}, constants.jwtSecret, {expiresIn:'1d'})
+   let accessToken = jwt.sign({...adminData}, process.env.jwtSecret, {expiresIn:'1d'})
    return {
     email : adminData.email,
     _id : adminData._id,

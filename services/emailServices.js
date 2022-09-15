@@ -32,7 +32,7 @@ const sendEmail = (emailData) => {
 }
 
  const checkIfEmailExists = async (email) => {
-  let resp = await fetch(`https://api.emailable.com/v1/verify?email=${email}&api_key=${constants.EmailVerificationKey}`)
+  let resp = await fetch(`https://api.emailable.com/v1/verify?email=${email}&api_key=${process.env.EmailVerificationKey}`)
   let data = await resp.json()
   if(data.state !== 'deliverable'){
       throw {
